@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>I'm Sorry, Dear ❤️</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+    }
+
+    body {
+        min-height: 100vh;
+        overflow: hidden;
+        background: linear-gradient(135deg, #ff758c, #ff7eb3, #ffb6c1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+    }
+
+    body::before {
+        content: "";
+        position: fixed;
+        width: 400px;
+        height: 400px;
+        background: rgba(255,255,255,0.15);
+        border-radius: 50%;
+        filter: blur(80px);
+        top: -100px;
+        left: -100px;
+    }
+
+    body::after {
+        content: "";
+        position: fixed;
+        width: 350px;
+        height: 350px;
+        background: rgba(255,255,255,0.12);
+        border-radius: 50%;
+        filter: blur(80px);
+        bottom: -100px;
+        right: -100px;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 500px;
+        text-align: center;
+        padding: 35px 25px;
+        background: rgba(255,255,255,0.15);
+        border: 1px solid rgba(255,255,255,0.3);
+        border-radius: 30px;
+        backdrop-filter: blur(15px);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        position: relative;
+        z-index: 5;
+    }
+
+    .heart {
+        font-size: 65px;
+        animation: heartbeat 1.2s infinite;
+        margin-bottom: 15px;
+    }
+
+    @keyframes heartbeat {
+        0%, 100% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.2);
+        }
+    }
+
+    h1 {
+        font-size: 34px;
+        margin-bottom: 18px;
+    }
+
+    .message {
+        font-size: 17px;
+        line-height: 1.8;
+        margin-bottom: 25px;
+    }
+
+    .promise {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 25px;
+    }
+
+    button {
+        border: none;
+        padding: 15px 30px;
+        border-radius: 50px;
+        background: white;
+        color: #ff4f81;
+        font-size: 17px;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        transition: 0.3s;
+    }
+
+    button:hover {
+        transform: scale(1.08);
+    }
+
+    .floating-heart {
+        position: fixed;
+        bottom: -30px;
+        font-size: 22px;
+        animation: floatUp linear forwards;
+        opacity: 0.8;
+        z-index: 1;
+    }
+
+    @keyframes floatUp {
+        from {
+            transform: translateY(0) rotate(0deg);
+            opacity: 0;
+        }
+
+        20% {
+            opacity: 1;
+        }
+
+        to {
+            transform: translateY(-110vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+
+    #finalScreen {
+        display: none;
+    }
+
+    .final-heart {
+        font-size: 80px;
+        animation: heartbeat 1s infinite;
+    }
+
+    .final-title {
+        font-size: 30px;
+        margin: 15px 0;
+    }
+
+    .final-message {
+        font-size: 18px;
+        line-height: 1.8;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- FIRST SCREEN -->
+<div class="container" id="mainScreen">
+
+    <div class="heart">🥺❤️</div>
+
+    <h1>I'm Really Sorry, Dear</h1>
+
+    <p class="message">
+        I know I made a mistake and I made you feel hurt.
+        I'm truly sorry for that, my dear. 🥺
+        <br><br>
+
+        I never wanted to hurt you or make you feel disturbed
+        because of me.
+        <br><br>
+
+        Please forgive me. ❤️
+    </p>
+
+    <p class="promise">
+        I promise you from my heart,
+        <br>
+        this mistake will never happen again.
+    </p>
+
+    <button onclick="forgiveMe()">
+        ❤️ Please Forgive Me
+    </button>
+
+</div>
+
+
+<!-- FINAL APOLOGY SCREEN -->
+<div class="container" id="finalScreen">
+
+    <div class="final-heart">🥺❤️</div>
+
+    <h1 class="final-title">
+        Please Forgive Me
+    </h1>
+
+    <p class="final-message">
+        I'm really sorry, dear. 🥺
+        <br><br>
+
+        I know my mistake hurt you,
+        and I truly regret it.
+        <br><br>
+
+        <b>
+        I promise this mistake will never happen again.
+        </b>
+
+        <br><br>
+
+        Please don't stay upset with me.
+        <br>
+        I'm sincerely asking you...
+        <br><br>
+
+        <b>Please forgive me. 🥺❤️</b>
+    </p>
+
+</div>
+
+
+<script>
+
+function createHeart() {
+
+    const heart = document.createElement("div");
+
+    heart.classList.add("floating-heart");
+
+    const hearts = [
+        "❤️",
+        "💗",
+        "💕",
+        "💖",
+        "💞",
+        "🥺"
+    ];
+
+    heart.innerHTML =
+        hearts[Math.floor(Math.random() * hearts.length)];
+
+    heart.style.left = Math.random() * 100 + "vw";
+
+    heart.style.animationDuration =
+        (4 + Math.random() * 5) + "s";
+
+    heart.style.fontSize =
+        (15 + Math.random() * 25) + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 9000);
+}
+
+setInterval(createHeart, 400);
+
+
+function forgiveMe() {
+
+    document.getElementById("mainScreen").style.display = "none";
+
+    document.getElementById("finalScreen").style.display = "block";
+
+    // Heart burst
+    for (let i = 0; i < 30; i++) {
+        setTimeout(createHeart, i * 100);
+    }
+}
+
+</script>
+
+</body>
+</html>
